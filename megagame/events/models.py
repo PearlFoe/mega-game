@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 import datetime
 
@@ -10,7 +11,7 @@ class Event(models.Model):
 	description = models.TextField()
 	start_date = models.DateTimeField(null=True)
 	creation_date = models.DateTimeField()
-	created_by = models.ForeignKey('User', on_delete=models.PROTECT)
+	created_by = models.ForeignKey(User, on_delete=models.PROTECT)
 
 	class Meta:
 		db_table = 'events'

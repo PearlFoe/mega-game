@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from events.models import Event
 
 class Article(models.Model):
 	"""
@@ -8,8 +10,8 @@ class Article(models.Model):
 	title = models.CharField(max_length=300)
 	description = models.TextField()
 	creation_date = models.DateTimeField()
-	created_by = models.ForeignKey('User', on_delete=models.PROTECT)
-	event = models.ForeignKey('Event', on_delete=models.CASCADE)
+	created_by = models.ForeignKey(User, on_delete=models.PROTECT)
+	event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
 	class Meta:
 		db_table = 'articles'
