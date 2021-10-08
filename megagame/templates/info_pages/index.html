@@ -6,3 +6,11 @@
 	<link rel="stylesheet"
 		href="{% static 'start_page/index.css' %}">
 {% endblock %}
+
+{% block content %}
+	<div>
+		{% for paragraf in text_blocks %}
+			<p>{{ paragraf }}</p>
+		{% endfor %}
+	</div>
+{% endblock %}
