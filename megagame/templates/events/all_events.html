@@ -4,13 +4,9 @@
 
 {% block styles %}
 	<link rel="stylesheet"
-		href="{% static 'info_pages/index.css' %}">
+		href="{% static 'events/all_events.css' %}">
 {% endblock %}
 
 {% block content %}
-	<div>
-		{% for paragraf in text_blocks %}
-			<p>{{ paragraf }}</p>
-		{% endfor %}
-	</div>
+
 {% endblock %}
