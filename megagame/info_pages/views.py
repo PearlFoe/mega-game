@@ -9,4 +9,4 @@ def index(request):
     return render(request, 'info_pages/index.html', {'text_blocks': text_blocks})
 
 def rules(request):
-    return HttpResponse('Rules page!')
+    return render(request, 'info_pages/rules.html')
