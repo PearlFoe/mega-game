@@ -61,6 +61,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LANGUAGE_CODE = 'ru-ru'
+
 ROOT_URLCONF = 'megagame.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

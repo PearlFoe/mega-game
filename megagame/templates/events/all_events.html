@@ -17,7 +17,7 @@
 				<b>Описание:</b> {{event.description}}
 			</div>
 			<div class="event-start-date">
-				<b>Дата начала:</b> {{event.start_date}}
+				<b>Время начала:</b> {{event.start_date|date:"d F Y, G:i"}}
 			</div>
 		</div>
 	{% endfor %}
