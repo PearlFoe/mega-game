@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from events.models import Event, Article
 
 import datetime
+import pytz
 
 # EVENTS
 
@@ -26,7 +27,7 @@ def create_new_event(
 		name=event_name,
 		description=event_description,
 		start_date=event_start_date,
-		creation_date=datetime.datetime.now(),
+		creation_date=datetime.datetime.now(pytz.timezone("Europe/Moscow")),
 		created_by=creator,
 	)
 	new_event.save()
