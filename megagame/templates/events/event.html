@@ -8,5 +8,9 @@
 {% endblock %}
 
 {% block content %}
-
+	{% for event in events %}
+	<div>
+		<a href="../{{ event.id }}">{{event.name}}</a>
+	</div>
+	{% endfor %}
 {% endblock %}

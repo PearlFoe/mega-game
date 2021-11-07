@@ -8,5 +8,14 @@
 {% endblock %}
 
 {% block content %}
-
+	{% for event in events %}
+		<div class="event">
+			<div class="event-name">
+				<b>Название:</b> {{event.name}}
+			</div>
+			<div class="event-description">
+				<b>Описание:</b> {{event.description}}
+			</div>
+		</div>
+	{% endfor %}
 {% endblock %}
