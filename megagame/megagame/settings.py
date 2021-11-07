@@ -61,8 +61,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-LANGUAGE_CODE = 'ru-ru'
-
 ROOT_URLCONF = 'megagame.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -122,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
