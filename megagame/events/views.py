@@ -1,3 +1,4 @@
+from typing import Optional
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.models import User
@@ -17,7 +18,7 @@ def get_event_list(request) -> HttpResponse:
 
 def get_event(request, event_id: int) -> JsonResponse:
 	event = get_object_or_404(Event, id=event_id)
-	return JsonResponse({'evet': event})
+	return JsonResponse({'evet': dir(event)})
 
 def create_new_event(
 	request, event_name: str,  event_description: str,
