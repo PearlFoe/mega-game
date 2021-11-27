@@ -18,7 +18,7 @@ def get_event_list(request) -> HttpResponse:
 
 def get_event(request, event_id: int) -> JsonResponse:
 	event = get_object_or_404(Event, id=event_id)
-	return JsonResponse({'evet': dir(event)})
+	return render(request, 'events/event.html', {'event': event})
 
 def create_new_event(
 	request, event_name: str,  event_description: str,
@@ -43,13 +43,12 @@ def delete_event(request, event_id: int) -> None:
 
 def get_article_list(request, event_id: int) -> JsonResponse:
 	event = get_object_or_404(Event, id=event_id)
-	articles = []
 	try:
-		articles = Article.objects.get(event=event)
+		articles = Article.objects.all().filter(event=event)
 	except ObjectDoesNotExist:
-		pass
+		articles = []
 	finally:
-		return JsonResponse({'articles': articles})
+		return render(request, 'articles/all_articles.html', {'articles': articles})
 
 def create_new_article(request) -> None:
 	pass
