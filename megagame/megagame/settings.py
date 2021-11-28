@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'info_pages',
     'user_auth',
 
-    #'crispy_forms',
+    'crispy_forms',
     'bootstrap5',
 ]
 
