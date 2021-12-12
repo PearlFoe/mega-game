@@ -36,7 +36,7 @@ class Article(models.Model):
 	участниками во время мероприятия
 	"""
 	title = models.CharField(max_length=300)
-	description = models.TextField()
+	description = models.TextField(null=True)
 	creation_date = models.DateTimeField()
 	created_by = models.ForeignKey(User, on_delete=models.PROTECT)
 	event = models.ForeignKey(Event, on_delete=models.CASCADE)
