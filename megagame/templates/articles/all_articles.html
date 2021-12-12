@@ -7,6 +7,25 @@
 		href="{% static 'articles/all_articles.css' %}">
 {% endblock %}
 
+{% block javascript %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+	function on_subm(){
+		$.ajax({
+			data: $('form').serialize(),
+			type: "POST",
+			url: "{% url 'create_new_article_url' event.id %}",
+			success: function (response) {},
+			error: function (response) {
+				alert("Что-то пошло не так(");
+				console.log(response.responseJSON.errors)
+			}
+		});
+		return false;
+	}
+  </script>
+{% endblock javascript %}
+
 {% block content %}
 	<div class="articles">
 		{% for article in articles %}
@@ -23,11 +42,11 @@
 			</div>
 		{% endfor %}
 	</div>
-	<div class="article-form">
-		<form action="{% url 'create_new_article_url' event.id %}" method="post">
+	<div class="article-form bg-dark">
+		<form method="post">
 			{% csrf_token %}
 			{{ form }}
-			<input type="submit" value="Submit">
+			<input type="submit" value="Submit" onclick="return on_subm();">
 		</form>
 	</div>
 {% endblock %}

@@ -6,7 +6,7 @@ class ArticleForm(forms.Form):
             attrs={
                 'placeholder': 'Чтобы отделить основную'
                                 'часть от заголовка - ' 
-                                'напиши ее с новой строки'
+                                'оставь между ними пустую строку'
             }
         ), 
         label=''
@@ -14,7 +14,7 @@ class ArticleForm(forms.Form):
 
     def split_header_and_body(self):
         data_text = self.data['data']
-        if '\n' in data_text:
-            return data_text.split('\n', 1)
+        if '\r\n\r\n' in data_text:
+            return data_text.split('\r\n\r\n', 1)
         else:
             return data_text
