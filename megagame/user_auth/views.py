@@ -38,4 +38,4 @@ def register_view(request):
 		r_form = UserCreationForm()
 
 	context = {'form':r_form}
-	return render(request, 'user_auth/register.html', context)
+	return render(request, 'user_auth/registration.html', context)

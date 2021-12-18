@@ -22,7 +22,7 @@ def get_event(request, event_id: int) -> JsonResponse:
 	event = get_object_or_404(Event, id=event_id)
 	return render(request, 'events/event.html', {'event': event})
 
-@login_required
+@login_required(login_url='login_page')
 def create_new_event(
 	request, event_name: str,  event_description: str,
 	event_created_by: int, event_start_date: str=None) -> None:
@@ -36,11 +36,11 @@ def create_new_event(
 	)
 	new_event.save()
 
-@login_required
+@login_required(login_url='login_page')
 def update_event(request) -> None:
 	pass
 
-@login_required
+@login_required(login_url='login_page')
 def delete_event(request, event_id: int) -> None:
 	pass
 
@@ -56,7 +56,7 @@ def get_article_list(request, event_id: int) -> HttpResponse:
 	finally:
 		return render(request, 'articles/all_articles.html', {'articles': articles, 'form': form, 'event': event})
 
-@login_required
+@login_required(login_url='login_page')
 def create_new_article(request, event_id: int) -> JsonResponse:
 	if request.method == 'POST' and request.is_ajax():
 		form = ArticleForm(request.POST)
@@ -86,11 +86,11 @@ def create_new_article(request, event_id: int) -> JsonResponse:
 	else:
 		return JsonResponse({'success': False, 'error': 'Invalid method'}, status=405)
 
-@login_required
+@login_required(login_url='login_page')
 def delete_article(request, article_id: int) -> None:
 	pass
 
-@login_required
+@login_required(login_url='login_page')
 def update_article(request) -> None:
 	pass
 
