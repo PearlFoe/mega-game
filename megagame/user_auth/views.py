@@ -12,7 +12,7 @@ def login_view(request):
 			user = authenticate(username=user_name, password=password)
 			if user:
 				login(request, user)
-				return redirect('user_personal_page', user_id=user.id)
+				return redirect('index_page')
 	else:
 		l_form = AuthenticationForm()
 
@@ -33,7 +33,7 @@ def register_view(request):
 			password = r_form.cleaned_data['password1']
 			user = authenticate(username=user_name, password=password)
 			login(request, user)
-			return redirect('user_personal_page', user_id=user.id)
+			return redirect('index_page')
 	else:
 		r_form = UserCreationForm()
 
