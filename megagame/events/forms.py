@@ -4,7 +4,7 @@ class ArticleForm(forms.Form):
     data = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'placeholder': 'Чтобы отделить основную'
+                'placeholder': 'Чтобы отделить основную '
                                 'часть от заголовка - ' 
                                 'оставь между ними пустую строку'
             }

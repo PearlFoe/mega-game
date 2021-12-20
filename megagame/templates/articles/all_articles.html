@@ -46,7 +46,7 @@
 		<form method="post">
 			{% csrf_token %}
 			{{ form }}
-			<input type="submit" value="Submit" onclick="return on_subm();">
+			<input type="button" class="btn btn-primary" value="Submit" onclick="return on_subm();">
 		</form>
 	</div>
 {% endblock %}
