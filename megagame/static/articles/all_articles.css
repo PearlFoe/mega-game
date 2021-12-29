@@ -28,7 +28,7 @@
     border-radius: 6px;
 }
 
-form {
+.article-form>form {
     margin: 3px;
 
     display: flex;
