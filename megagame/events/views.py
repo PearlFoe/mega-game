@@ -61,13 +61,14 @@ def get_new_articles(request, event_id: int, last_article_id: int=None) -> JsonR
 	if not event:
 		return JsonResponse({'success': False, 'error': 'Event was not found'}, status=400)
 
-	last_article = Article.objects.get(id=last_article_id)
-	if last_article:
-		new_articles = Article.objects.filter(event=event, creation_date__gt=last_article.creation_date)
+	try:
+		last_article = Article.objects.filter(id=last_article_id).get()
+	except Exception:
+		new_articles = Article.objects.filter(event=event).in_bulk()
 	else:
-		new_articles = Article.objects.filter(event=event)
+		new_articles = Article.objects.filter(event=event, creation_date__gt=last_article.creation_date).in_bulk()
 
-	return JsonResponse({'success': True, 'artiles': new_articles}, status=201)
+	return JsonResponse({'success': True, 'artiсles': new_articles}, status=201)
 
 @login_required(login_url='login_page')
 def create_new_article(request, event_id: int) -> JsonResponse:

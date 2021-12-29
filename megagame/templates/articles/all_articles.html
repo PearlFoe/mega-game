@@ -10,12 +10,34 @@
 {% block javascript %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
+	function getNewArticles(){
+	var article_id = document.evaluate('//div[@class="articles"]/div[1]/@id', document.body, null, XPathResult.STRING_TYPE, null).stringValue;
+	var url = "{% url 'get_new_articles_url' event.id %}"+article_id
+	$.get(url, function(data) {
+		if(data.articles != 'undefined'){
+			for(article in data.articles){
+				//здесь бы собирать html и обновлять сраницу
+				// полезная ссылка https://proweb63.ru/help/js/ajax-js-content
+			}
+		}
+		setTimeout(getNewArticles, 10000); // 10000 miliseconds = 10 seconds
+	});
+	function setNewEntry(entry) {
+        $('//div.articles').html(getNewEntry($('//div.articles').html(), entry));
+    }
+    function getNewEntry(oldHTML, newHTML) {
+        if(newHTML == '') 
+            return newHTML;
+        else
+            return oldHTML + newHTML;
+    }
+	}
 	function on_subm(){
 		$.ajax({
 			data: $('form').serialize(),
 			type: "POST",
 			url: "{% url 'create_new_article_url' event.id %}",
-			success: function (response) {},
+			success: getNewArticles(),
 			error: function (response) {
 				alert("Что-то пошло не так(");
 				console.log(response.responseJSON.errors)
@@ -23,6 +45,7 @@
 		});
 		return false;
 	}
+	window.onload = getNewArticles;
   </script>
 {% endblock javascript %}
 
