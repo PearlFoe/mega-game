@@ -50,11 +50,24 @@ def get_article_list(request, event_id: int) -> HttpResponse:
 	form = ArticleForm()
 	event = get_object_or_404(Event, id=event_id)
 	try:
-		articles = Article.objects.all().filter(event=event)
+		articles = Article.objects.filter(event=event)
 	except ObjectDoesNotExist:
 		articles = []
 	finally:
 		return render(request, 'articles/all_articles.html', {'articles': articles, 'form': form, 'event': event})
+
+def get_new_articles(request, event_id: int, last_article_id: int=None) -> JsonResponse:
+	event = Event.objects.filter(id=event_id).first()
+	if not event:
+		return JsonResponse({'success': False, 'error': 'Event was not found'}, status=400)
+
+	last_article = Article.objects.get(id=last_article_id)
+	if last_article:
+		new_articles = Article.objects.filter(event=event, creation_date__gt=last_article.creation_date)
+	else:
+		new_articles = Article.objects.filter(event=event)
+
+	return JsonResponse({'success': True, 'artiles': new_articles}, status=201)
 
 @login_required(login_url='login_page')
 def create_new_article(request, event_id: int) -> JsonResponse:

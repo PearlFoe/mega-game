@@ -29,7 +29,7 @@
 {% block content %}
 	<div class="articles">
 		{% for article in articles %}
-			<div class="card border-dark mb-3">
+			<div class="card border-dark mb-3" id="{{ article.id }}">
 				<div class="card-body">
 					<h5 class="card-title">{{ article.title }}</h5>
 					{% if article.description %}
