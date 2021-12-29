@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'info_pages',
     'user_auth',
 
-    'crispy_forms',
     'bootstrap5',
 ]
 
@@ -63,8 +62,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'megagame.urls'
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, "templates")
 
