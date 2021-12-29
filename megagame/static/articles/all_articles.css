@@ -28,7 +28,7 @@
     border-radius: 6px;
 }
 
-.article-form>form {
+form#create-article {
     margin: 3px;
 
     display: flex;
@@ -43,8 +43,7 @@ textarea, input {
 textarea {
     width: 93%;
     height: 150px;
-
+    margin-right: 12px;
     border-radius: 4px;
-
     resize: none;
 }
