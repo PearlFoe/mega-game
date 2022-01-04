@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.core import serializers
 
 from events.models import Event, Article
 from events.forms import ArticleForm
@@ -50,11 +51,24 @@ def get_article_list(request, event_id: int) -> HttpResponse:
 	form = ArticleForm()
 	event = get_object_or_404(Event, id=event_id)
 	try:
-		articles = Article.objects.all().filter(event=event)
+		articles = Article.objects.filter(event=event)
 	except ObjectDoesNotExist:
 		articles = []
 	finally:
 		return render(request, 'articles/all_articles.html', {'articles': articles, 'form': form, 'event': event})
+
+def get_new_articles(request, event_id: int, last_article_id: int=None) -> JsonResponse:
+	event = Event.objects.filter(id=event_id).first()
+	if not event:
+		return JsonResponse({'success': False, 'error': 'Event was not found'}, status=400)
+
+	try:
+		last_article = Article.objects.filter(id=last_article_id).get()
+	except Exception:
+		new_articles = Article.objects.filter(event=event)
+	else:
+		new_articles = Article.objects.filter(event=event, creation_date__gt=last_article.creation_date)
+	return JsonResponse({'success': True, 'articles': [article.as_dict() for article in new_articles]}, status=200)
 
 @login_required(login_url='login_page')
 def create_new_article(request, event_id: int) -> JsonResponse:

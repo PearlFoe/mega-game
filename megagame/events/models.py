@@ -47,3 +47,18 @@ class Article(models.Model):
 
 	def __str__(self):
 		return self.title
+
+	def as_dict(self):
+		if self.description:
+			return {
+				"id": self.id,
+				"title": self.title,
+				"description": self.description,
+				"created_by": self.created_by.username
+			}
+		else:
+			return {
+				"id": self.id,
+				"title": self.title,
+				"created_by": self.created_by.username
+			} 
