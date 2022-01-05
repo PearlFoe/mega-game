@@ -2,6 +2,7 @@ from pydantic import BaseSettings
 
 class Settings(BaseSettings):
 	secret_key: str
+	real_ip: str
 	
 	db_name: str
 	db_user_name: str
